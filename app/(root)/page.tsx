@@ -1,13 +1,13 @@
 import SearchForm from "@/components/SearchForm";
-import ProjectCard, {ProjectCardType} from "@/components/ProjectCard";
-import {client} from "@/sanity/lib/client";
-import {PROJECTS_QUERY} from "@/sanity/lib/queries";
+import ProjectCard, { ProjectCardType } from "@/components/ProjectCard";
+import { PROJECTS_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive} from "@/sanity/lib/live";
 
 export default async function Home({ searchParams }: {
     searchParams: Promise<{ query?: string }>
 }) {
     const query = (await searchParams).query;
-    const posts = await client.fetch(PROJECTS_QUERY)
+    const { data: posts } = await sanityFetch({ query: PROJECTS_QUERY});
   return (
     <>
         <section className="pink_container">
@@ -31,6 +31,7 @@ export default async function Home({ searchParams }: {
                 )}
             </ul>
         </section>
+        <SanityLive />
     </>
   );
 }
