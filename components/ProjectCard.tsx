@@ -4,9 +4,12 @@ import {EyeIcon} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
+import {Author, Project} from "@/sanity/types";
 
-const ProjectCard = ({ post }: { post: ProgectCardType}) => {
-    const {_createdAt, views, author: {id: authorId, name}, title, category, _id, image, description} = post
+export type ProjectCardType = Omit<Project, "author"> & { author?: Author };
+
+const ProjectCard = ({ post }: { post: ProjectCardType}) => {
+    const {_createdAt, views, author, title, category, _id, image, description} = post
     return (
         <li className="project-card group">
             <div className="flex-between">
@@ -20,9 +23,9 @@ const ProjectCard = ({ post }: { post: ProgectCardType}) => {
             </div>
             <div className="flex-between mt-5 gap-5">
                 <div className="flex-1">
-                    <Link href={`/user/${authorId}`}>
+                    <Link href={`/user/${author?._id}`}>
                         <p className="text-16-medium line-clamp-1">
-                            {name}
+                            {author?.name}
                         </p>
                     </Link>
                     <Link href={`/projects/${_id}`}>
@@ -31,7 +34,7 @@ const ProjectCard = ({ post }: { post: ProgectCardType}) => {
                         </h3>
                     </Link>
                 </div>
-                <Link href={`/user/${authorId}`}>
+                <Link href={`/user/${author?._id}`}>
                     <Image src="https://placehold.co/48x48" alt="placeholder" width={48} height={48} className="rounded-full" />
                 </Link>
             </div>
@@ -39,10 +42,10 @@ const ProjectCard = ({ post }: { post: ProgectCardType}) => {
                 <p className="project-card_description">
                     {description}
                 </p>
-                <Image src={image} alt="placeholder" width={1000} height={500} className="project-card_image" />
+                <Image src={image || "https://placehold.co/1000x500"} alt="placeholder" width={1000} height={500} className="project-card_image" />
             </Link>
             <div className="flex-between gap-3 mt-5">
-                <Link href={`/?query=${category.toLowerCase()}`}>
+                <Link href={`/?query=${category?.toLowerCase()}`}>
                     <p className="text-16-medium">
                         {category}
                     </p>

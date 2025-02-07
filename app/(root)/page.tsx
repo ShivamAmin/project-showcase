@@ -1,20 +1,13 @@
 import SearchForm from "@/components/SearchForm";
-import ProjectCard from "@/components/ProjectCard";
+import ProjectCard, {ProjectCardType} from "@/components/ProjectCard";
+import {client} from "@/sanity/lib/client";
+import {PROJECTS_QUERY} from "@/sanity/lib/queries";
 
 export default async function Home({ searchParams }: {
     searchParams: Promise<{ query?: string }>
 }) {
     const query = (await searchParams).query;
-    const posts = [{
-        _createdAt: new Date(),
-        views: 55,
-        author: { _id: 1, name: 'Shivam Amin' },
-        _id: 1,
-        description: 'This is a description',
-        image: 'https://picsum.photos/350/200',
-        category: 'filler',
-        title: 'Sample Post',
-    }];
+    const posts = await client.fetch(PROJECTS_QUERY)
   return (
     <>
         <section className="pink_container">
