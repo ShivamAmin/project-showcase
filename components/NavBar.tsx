@@ -8,13 +8,13 @@ const NavBar = async () => {
     return (
         <header className="px-5 py-3 bg-[a0a0a0] shadow-sm font-work-sans">
             <nav className="flex justify-between items-center">
-                <Link href="/public">
+                <Link href="/">
                     <Image src="/logo.svg" alt="logo" width={174.465} height={137.41} />
                 </Link>
                 <div className="flex items-center gap-5 text-white">
                     {session && session?.user ? (
                         <>
-                            <Link href="/projects/create">
+                            <Link href="/project/create">
                                 <span>Create</span>
                             </Link>
                             <form action={async () => {

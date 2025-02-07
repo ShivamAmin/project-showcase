@@ -28,7 +28,7 @@ const ProjectCard = ({ post }: { post: ProjectCardType}) => {
                             {author?.name}
                         </p>
                     </Link>
-                    <Link href={`/projects/${_id}`}>
+                    <Link href={`/project/${_id}`}>
                         <h3 className="text-26-semibold line-clamp-1">
                             {title}
                         </h3>
@@ -38,7 +38,7 @@ const ProjectCard = ({ post }: { post: ProjectCardType}) => {
                     <Image src="https://placehold.co/48x48" alt="placeholder" width={48} height={48} className="rounded-full" />
                 </Link>
             </div>
-            <Link href={`/projects/${_id}`}>
+            <Link href={`/project/${_id}`}>
                 <p className="project-card_description">
                     {description}
                 </p>
@@ -51,7 +51,7 @@ const ProjectCard = ({ post }: { post: ProjectCardType}) => {
                     </p>
                 </Link>
                 <Button className="project-card_btn" asChild>
-                    <Link href={`/projects/${_id}`}>
+                    <Link href={`/project/${_id}`}>
                         Details
                     </Link>
                 </Button>
