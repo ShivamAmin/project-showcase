@@ -11,7 +11,7 @@ export default async function Home({ searchParams }: {
     const params = { search: query || null };
     const session = await auth();
     console.log(session?.id);
-    const { data: posts } = await sanityFetch({ query: PROJECTS_QUERY, params });
+    const { data: projects } = await sanityFetch({ query: PROJECTS_QUERY, params });
   return (
     <>
         <section className="pink_container">
@@ -26,9 +26,9 @@ export default async function Home({ searchParams }: {
                 {query ? `Search results for "${query}"` : "All projects"}
             </p>
             <ul className="mt-7 card_grid">
-                {posts?.length > 0 ? (
-                    posts.map((post: ProjectCardType) => (
-                        <ProjectCard key={post?._id} post={post} />
+                {projects?.length > 0 ? (
+                    projects.map((project: ProjectCardType) => (
+                        <ProjectCard key={project?._id} post={project} />
                     ))
                 ) : (
                     <p className="no-results">No projects found</p>
