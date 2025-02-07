@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SearchForm from "@/components/SearchForm";
 import ProjectCard from "@/components/ProjectCard";
 
@@ -31,7 +30,7 @@ export default async function Home({ searchParams }: {
             </p>
             <ul className="mt-7 card_grid">
                 {posts?.length > 0 ? (
-                    posts.map((post: ProjectCardType, index: number) => (
+                    posts.map((post: ProjectCardType) => (
                         <ProjectCard key={post?._id} post={post} />
                     ))
                 ) : (
