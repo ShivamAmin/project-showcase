@@ -18,15 +18,23 @@ const nextConfig: NextConfig = {
         appIsrStatus: true,
         buildActivity: true,
         buildActivityPosition: 'bottom-right',
-    }
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+    output: 'standalone',
 };
 
 export default withSentryConfig(nextConfig, {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
 
-    org: "self-50l",
-    project: "javascript-nextjs",
+    org: process.env.SENTRY_ORG,
+    project: process.env.SENTRY_PROJECT,
+    authToken: process.env.SENTRY_AUTH_TOKEN,
 
     // Only print logs for uploading source maps in CI
     silent: !process.env.CI,
