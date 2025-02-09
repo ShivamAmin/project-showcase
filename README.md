@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Showcase
 
-## Getting Started
+This project serves as a learning exercise to explore Next.js 15 and reinforce key concepts such as Server-Side Rendering (SSR), Static Site Generation (SSG), Incremental Static Generation (ISG), Partial Prerendering (PPR), authentication with NextAuth, and more. It also integrates various modern tools and frameworks to build a functional portfolio showcase.
 
-First, run the development server:
+## 🚀 Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js 15** – Latest version of Next.js for hybrid rendering strategies
+- **React 19** – Leveraging the latest React features
+- **TypeScript** – Strongly typed JavaScript for maintainability
+- **NextAuth** – OAuth authentication support
+- **Sanity CMS** – Headless CMS for content management
+- **Shadcn** – UI component library for a polished design
+- **Tailwind CSS** – Utility-first styling framework
+- **Sentry** – Performance monitoring and error tracking
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **OAuth Authentication** – Secure login system with NextAuth
+- **Sanity CMS Integration** – Manage content dynamically via Sanity
+- **Sentry Performance & Bug Tracking** – Monitors app performance and logs issues
+- **Partial Prerendering (PPR)** – Optimized rendering on Project and User Details pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔧 Installation & Setup
 
-## Learn More
+To run this project locally, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/ShivamAmin/project-showcase.git
+   cd project-showcase
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Set up environment variables:
+   - Copy `.env.example` to `.env.local`
+   - Authjs: Generate an auth token by running: ```npm exec auth secret```
+     - Register a new Github app as described [here](https://authjs.dev/guides/configuring-github?framework=next-js#registering-your-app) to generate a Github ID and Github Secret
+   - Sanity: Create a new project within Sanity (From scratch using CLI) and run the following with your project id
+     ```sh
+     npm create sanity@latest -- --project <project id> --dataset production --template clean
+     ```
+     - When asked, install create-sanity, choose your existing project, choose production dataset, add configuration files, use typescript, embed sanity studio, leave the route as default, overwrite files when asked, choose the clean project template option, add project id and dataset to env file
+     - Generate a Sanity Write Token by navigating to Project > API > Tokens > Create Token with 'Editor' permissions
+     - Add a new export in sanity/env.ts: ```export const token = process.env.SANITY_WRITE_TOKEN;```
+   - Sentry: Create a new Nextjs project within Sentry and run the wizard command to setup Sentry.
+     - If the command fails, choose not to update @sentry/nextjs when trying again.
+   - run ```sh npm install``` to resolve module not found errors
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🐳 Deployment with Docker
 
-## Deploy on Vercel
+You can deploy the project using Docker:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Copy the contents of env.local to env.production with the necessary changes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Build the Docker image:
+   ```sh
+   docker build -t project-showcase:latest .
+   ```
+3. Run the container:
+   ```sh
+   docker run -p 3000:3000 -e AUTH_URL='http://localhost:3000' project-showcase
+   ```
+
+## 🛣️ Roadmap
+
+Planned future improvements:
+- Allow users to add comments to projects
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## 🙌 Acknowledgments
+
+This project was initially built by following a tutorial to get hands-on experience with Next.js 15 and modern web development practices.
+
+Credit to **JavaScript Mastery** for their tutorial: [Next.js 15 Crash Course](https://www.youtube.com/watch?v=Zq5fmkH0T78).
+
+---
+
+Feel free to fork this repository and modify it for your own learning or portfolio purposes! 🚀
