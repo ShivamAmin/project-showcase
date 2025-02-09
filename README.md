@@ -46,7 +46,7 @@ To run this project locally, follow these steps:
      - Add a new export in sanity/env.ts: ```export const token = process.env.SANITY_WRITE_TOKEN;```
    - Sentry: Create a new Nextjs project within Sentry and run the wizard command to setup Sentry.
      - If the command fails, choose not to update @sentry/nextjs when trying again.
-   - run ```sh npm install``` to resolve module not found errors
+   - run ```npm install``` to resolve module not found errors
 
 4. Start the development server:
    ```sh
